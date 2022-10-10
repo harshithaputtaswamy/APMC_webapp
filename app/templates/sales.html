@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>APMC</title>
+
+    </head>
+    <body>
+        {% include "navbar.html" %}
+        <div class="container my-5">
+            <div class="container mt-5">
+                <form action="/view_sales" method="POST" class="col-12 mt-5 mx-auto text-center">
+                    {% csrf_token %}
+                    <div class="row mt-5">
+                        <div class="col">
+                            <div class="input-group date" id="datepicker">
+                                <input type="month" class="form-control h-100" id="month_year" name="month_year" placeholder="MM/YYYY" value={{month_year}} />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <select class="form-select" aria-label="Default select example" name="persona">
+                                <option value="all" selected>All</option>
+                                <option value="seller">Seller</option>
+                                <option value="weighmen">Weighmen</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-lg">Apply filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            {% if persona == 'all' %}
+            <div id="sales_table">
+                <table class="table mt-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Seller name</th>
+                            <th scope="col">Seller id</th>
+                            <th scope="col">Weighmen</th>
+                            <th scope="col">Number of bags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sale in all_sales %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{sale.date}}</td>
+                            <td>{{sale.seller_name}}</td>
+                            <td>{{sale.seller_id}}</td>
+                            <td>{{sale.weighmen_name}}</td>
+                            <td>{{sale.num_bags}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% elif persona == 'weighmen' %}
+            <div id="sales_table">
+                {% for weighman, sales in all_sales.items %}
+                <div class="container my-5">
+                    <h6>Weighmen - {{weighman}}</h6>
+                    <table class="table m-3">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Seller name</th>
+                            <th scope="col">Seller id</th>
+                            <th scope="col">Number of bags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sale in sales %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{sale.date}}</td>
+                            <td>{{sale.seller_name}}</td>
+                            <td>{{sale.seller_id}}</td>
+                            <td>{{sale.num_bags}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% elif persona == 'seller' %}
+            <div id="sales_table">
+                <table class="table mt-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Seller name</th>
+                            <th scope="col">Seller id</th>
+                            <th scope="col">Number of bags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sale in all_sales %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{sale.seller_name}}</td>
+                            <td>{{sale.seller_id}}</td>
+                            <td>{{sale.num_bags}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+
+            <script>
+                document.querySelectorAll('.form-outline').forEach((formOutline) => {
+                    new mdb.Input(formOutline).init();
+                });
+            </script>
+        </div>
+    </body>
+</html>

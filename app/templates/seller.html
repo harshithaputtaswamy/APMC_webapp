@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>APMC</title>
+    </head>
+    <body>
+        {% include "navbar.html" %}
+        <div class="container text-center mt-5">
+            <form  method="POST" action="/add_seller/" class="col-12 col-md-10 col-lg-6 my-5 mx-auto text-center">
+                <h5>Add seller</h5>
+                {% csrf_token %}
+                <div class="form-outline my-4">
+                  <input type="text" id="name" name="name" class="form-control" required/>
+                  <label class="form-label" for="name">Seller Name</label>
+                  <div class="invalid-feedback">Please add seller name</div>
+                </div>
+              
+                <div class="form-outline mb-4">
+                  <input type="text" id="id" name="id" class="form-control" required/>
+                  <label class="form-label" for="id">Seller Id</label>
+                  <div class="invalid-feedback">Please add seller id</div>
+                </div>
+              
+                <button type="submit" class="btn btn-primary btn-lg mb-5">Add seller</button>
+            </form>
+            <div class="container mt-5 pt-5">
+                <div class="">
+                    <h5>All Sellers</h5>
+                    <table class="table mt-5">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Id</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for seller in all_sellers %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{seller.full_name}}</td>
+                                <td>{{seller.seller_id}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <script>
+                document.querySelectorAll('.form-outline').forEach((formOutline) => {
+                    new mdb.Input(formOutline).init();
+                });
+            </script>
+        </div>
+    </body>
+</html>
