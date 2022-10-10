@@ -26,7 +26,7 @@ SECRET_KEY = ')ob2&*$&9$g0rj3w^q1v&8d%djkk_6ty9vq_$ht2t)wi__%6u4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['kar-apmc-weighmen-docs.herokuapp.com']
 
 
 # Application definition
