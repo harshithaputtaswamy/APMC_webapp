@@ -7,33 +7,35 @@
     </head>
     <body>
         {% include "navbar.html" %}
-        <div class="container-fluid mt-3 my-lg-5">
-            <div class="container-fluid">
-                <form action="/view_sales" method="POST" class="col-12 mx-auto text-center">
+        <div class="container-fluid container-lg mt-3 my-lg-5">
+            <div class="container-fluid container-lg mx-auto text-center">
+                <form action="/view_sales/" method="POST" class="col-12 mx-auto text-center">
                     {% csrf_token %}
                     <div class="row">
-                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                        <div class="col-12 col-lg-4 mt-4 mt-lg-0">
                             <div class="input-group date" id="datepicker">
                                 <input type="month" class="form-control h-100" id="month_year" name="month_year" placeholder="MM/YYYY" value={{month_year}} />
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                        <div class="col-12 col-lg-4 mt-4 mt-lg-0">
                             <select class="form-select" aria-label="Default select example" name="persona">
                                 <option value="all" selected>All</option>
                                 <option value="seller">Seller</option>
                                 <option value="weighmen">Weighmen</option>
                             </select>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                        <div class="col-12 col-lg-4 mt-4 mt-lg-0">
                             <button type="submit" class="btn btn-primary btn-lg">Apply filter</button>
                         </div>
                     </div>
                 </form>
             </div>
-
+            <div class="text-center mt-5">
+                <h4>Sales Record</h4>
+            </div>
             {% if persona == 'all' %}
             <div id="sales_table" class="table-responsive">
-                <table class="table mt-5">
+                <table class="table mt-4">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -60,9 +62,9 @@
             </div>
 
             {% elif persona == 'weighmen' %}
-            <div id="sales_table">
+            <div id="sales_table" class="table-responsive">
                 {% for weighman, sales in all_sales.items %}
-                <div class="container my-5">
+                <div class="container-fluid container-lg my-5">
                     <h6>Weighmen - {{weighman}}</h6>
                     <table class="table m-3">
                         <thead>
@@ -91,7 +93,7 @@
         </div>
 
         {% elif persona == 'seller' %}
-            <div id="sales_table">
+            <div id="sales_table" class="table-responsive">
                 <table class="table mt-5">
                     <thead>
                         <tr>
