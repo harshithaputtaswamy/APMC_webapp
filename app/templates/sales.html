@@ -27,11 +27,17 @@
                         <div class="col-12 col-lg-4 mt-4 mt-lg-0">
                             <button type="submit" class="btn btn-primary btn-lg">Apply filter</button>
                         </div>
+                        
                     </div>
                 </form>
             </div>
-            <div class="text-center mt-5">
-                <h4>Sales Record</h4>
+            <div class="mt-5 text-center row px-lg-5 mx-lg-5">
+                <div class="col-6">
+                    <h4>Sales Record</h4>
+                </div>
+                <div class="col-6">
+                    <button id="download" class="btn btn-primary btn-lg" onclick="download_excel()">Download Sales</button>
+                </div>
             </div>
             {% if persona == 'all' %}
             <div id="sales_table" class="table-responsive-md">
@@ -74,6 +80,7 @@
                             <th scope="col">Seller name</th>
                             <th scope="col">Seller id</th>
                             <th scope="col">Number of bags</th>
+                            <th scope="col">Weighmen</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,6 +91,7 @@
                             <td>{{sale.seller_name}}</td>
                             <td>{{sale.seller_id}}</td>
                             <td>{{sale.num_bags}}</td>
+                            <td>{{weighman}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -121,6 +129,11 @@
                 document.querySelectorAll('.form-outline').forEach((formOutline) => {
                     new mdb.Input(formOutline).init();
                 });
+                function download_excel() {
+                    $("#sales_table").table2excel({
+                        filename: "Sales.xls"
+                    });
+                };
             </script>
         </div>
     </body>
