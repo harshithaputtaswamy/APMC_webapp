@@ -7,24 +7,24 @@
     </head>
     <body>
         {% include "navbar.html" %}
-        <div class="container my-5">
-            <div class="container mt-5">
-                <form action="/view_sales" method="POST" class="col-12 mt-5 mx-auto text-center">
+        <div class="container-fluid mt-3 my-lg-5">
+            <div class="container-fluid">
+                <form action="/view_sales" method="POST" class="col-12 mx-auto text-center">
                     {% csrf_token %}
-                    <div class="row mt-5">
-                        <div class="col">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
                             <div class="input-group date" id="datepicker">
                                 <input type="month" class="form-control h-100" id="month_year" name="month_year" placeholder="MM/YYYY" value={{month_year}} />
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
                             <select class="form-select" aria-label="Default select example" name="persona">
                                 <option value="all" selected>All</option>
                                 <option value="seller">Seller</option>
                                 <option value="weighmen">Weighmen</option>
                             </select>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
                             <button type="submit" class="btn btn-primary btn-lg">Apply filter</button>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
             </div>
 
             {% if persona == 'all' %}
-            <div id="sales_table">
+            <div id="sales_table" class="table-responsive">
                 <table class="table mt-5">
                     <thead>
                         <tr>

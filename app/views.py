@@ -87,7 +87,6 @@ def add_weighmen(request):
 
 
 def get_sales(year, month, persona):
-    print(year, month, persona)
     sales = dict(database.child('Sales').child(str(year)).child(months_list[int(month) - 1]).get().val()).values()
     if persona == 'seller':
         seller_sales = []
@@ -108,8 +107,6 @@ def get_sales(year, month, persona):
     elif persona == 'weighmen':
         weighmen_records = {}
         for sale in sales:
-            print('\n\n')
-            print(sale)
             weighmen_dict = {}
             weighmen_dict['seller_name'] = sale['seller_name']
             weighmen_dict['seller_id'] = sale['seller_id']
@@ -121,7 +118,6 @@ def get_sales(year, month, persona):
                 weighmen_records[sale['weighmen_name']].append(weighmen_dict)
         sales = weighmen_records
 
-    print(sales)
     return sales if sales is not None else []
 
 

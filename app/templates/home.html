@@ -7,46 +7,43 @@
     </head>
     <body>
         {% include "navbar.html" %}
-        <div class="container">
-            <div class="">
-                <div class="container">
-                    <form action="/add_sales/" method="POST" class="col-12 mt-5 mx-auto text-center">
-                        {% csrf_token %}
-                        <h5 class="mb-5">Add sales information</h5>
-                        <div class="row">
-                            <div class="col">
-                                <div class="input-group date  h-100" id="datepicker">
-                                    <input type="date" class="form-control h-100" id="date" name="date" placeholder="Date"/>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <select class="form-select" aria-label="Default select example" name="seller_name">
-                                    <option selected>Select seller</option>
-                                    {% for seller in all_sellers %}
-                                        <option value="{{seller.full_name}}-{{seller.seller_id}}">{{seller.full_name}} - {{seller.seller_id}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col">
-                                <select class="form-select" aria-label="Default select example" name="weighmen_name">
-                                    <option selected>Select weighmen</option>
-                                    {% for weighman in all_weighmen %}
-                                        <option value={{weighman.full_name}}>{{weighman.full_name}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col">
-                                <div class="form-outline">
-                                    <input type="number" id="typeNumber" class="form-control" name="num_bags"/>
-                                    <label class="form-label" for="typeNumber">Number of bags</label>
-                                  </div>
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <form action="/add_sales/" method="POST" class="col-12 mt-5 mx-auto text-center">
+                    {% csrf_token %}
+                    <h5 class="mb-3 mb-lg-5">Add sales information</h5>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                            <div class="input-group date  h-100" id="datepicker">
+                                <input type="date" class="form-control h-100" id="date" name="date" placeholder="Date"/>
                             </div>
                         </div>
-                            <button type="submit" class="btn btn-primary btn-lg mt-5 mx-auto">Add sale</button>
-                    </form>
-                </div>
+                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                            <select class="form-select" aria-label="Default select example" name="seller_name">
+                                <option selected>Select seller</option>
+                                {% for seller in all_sellers %}
+                                    <option value="{{seller.full_name}}-{{seller.seller_id}}">{{seller.full_name}} - {{seller.seller_id}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                            <select class="form-select" aria-label="Default select example" name="weighmen_name">
+                                <option selected>Select weighmen</option>
+                                {% for weighman in all_weighmen %}
+                                    <option value={{weighman.full_name}}>{{weighman.full_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                            <div class="form-outline">
+                                <input type="number" id="typeNumber" class="form-control" name="num_bags"/>
+                                <label class="form-label" for="typeNumber">Number of bags</label>
+                            </div>
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-lg mt-5 mx-auto">Add sale</button>
+                </form>
             </div>
-
             <script>
                 document.querySelectorAll('.form-outline').forEach((formOutline) => {
                     new mdb.Input(formOutline).init();

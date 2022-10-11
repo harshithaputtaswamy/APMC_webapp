@@ -6,7 +6,7 @@
     </head>
     <body>
         {% include "navbar.html" %}
-        <div class="container text-center mt-5">
+        <div class="container-fluid text-center mt-5">
             <form method="POST" action="/add_weighmen/" class="col-12 col-md-10 col-lg-6 mt-5 mx-auto text-center">
                 {% csrf_token %}
                 <h5>Add Weighmen</h5>
@@ -21,11 +21,11 @@
                     <label class="form-label" for="id">Weighmen Id</label>
                 </div>
               
-                <button type="submit" class="btn btn-primary btn-lg">Add Weighmen</button>
+                <button type="submit" class="btn btn-primary btn-lg mb-5">Add Weighmen</button>
             </form>
 
-            <div class="container mt-5 pt-5">
-                <div class="">
+            <div class="container-fluid mt-0 mt-lg-5 pt-0 pt-lg-5">
+                <div class="table-responsive">
                     <h5>All Weighmen</h5>
                     <table class="table mt-3">
                         <thead>
