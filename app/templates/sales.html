@@ -34,7 +34,7 @@
                 <h4>Sales Record</h4>
             </div>
             {% if persona == 'all' %}
-            <div id="sales_table" class="table-responsive">
+            <div id="sales_table" class="table-responsive-md">
                 <table class="table mt-4">
                     <thead>
                         <tr>
@@ -62,7 +62,7 @@
             </div>
 
             {% elif persona == 'weighmen' %}
-            <div id="sales_table" class="table-responsive">
+            <div id="sales_table" class="table-responsive-md">
                 {% for weighman, sales in all_sales.items %}
                 <div class="container-fluid container-lg my-5">
                     <h6>Weighmen - {{weighman}}</h6>
@@ -93,7 +93,7 @@
         </div>
 
         {% elif persona == 'seller' %}
-            <div id="sales_table" class="table-responsive">
+            <div id="sales_table" class="table-responsive-md">
                 <table class="table mt-5">
                     <thead>
                         <tr>
