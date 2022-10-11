@@ -3,7 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <title>APMC</title>
+        <style type="text/css">
+            .sd-container {
+                position: relative;
+                float: left;
+            }
 
+            .open-button {
+                position: absolute;
+                top: 5px;
+                right: 11px;
+                width: 25px;
+                height: 25px;
+                background: #fff;
+                pointer-events: none;
+            }
+
+            .open-button button {
+                border: none;
+                background: transparent;
+            }
+
+            #date_input {
+                min-height: auto;
+                background: transparent;
+            }
+        </style>
     </head>
     <body>
         {% include "navbar.html" %}
@@ -14,8 +39,12 @@
                     <h5 class="mb-3 mb-lg-5">Add sales information</h5>
                     <div class="row">
                         <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
-                            <div class="input-group date  h-100" id="datepicker">
-                                <input placeholder="Date" type="date" class="form-control h-100" id="date" name="date" required/>
+                            <div class="sd-container w-100">
+                                <!-- <label class="form-label" for="date">Date</label> -->
+                                <input placeholder="Date" type="date" class="w-100 px-3 py-1 border-1 rounded-2 date_input" id="date" name="date" required/>
+                                <span class="open-button">
+                                    <button type="button">📅</button>
+                                </span>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
